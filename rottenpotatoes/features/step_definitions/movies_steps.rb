@@ -23,3 +23,11 @@ Then /I should see all the movies/ do
     step %{I should see "#{movie.title}"}
   end
 end
+
+Then /^the director of "(.*)" should be "(.*)"/ do |title, director|
+  # getting the movie with a given title
+  movie = Movie.where(title: title).first
+  # asserting similarity between collected movie director 
+  # and given movie director
+  expect(movie.director).to eq(director)
+end
